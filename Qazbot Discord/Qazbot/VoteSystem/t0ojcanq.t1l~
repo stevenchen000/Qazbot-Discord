@@ -1,0 +1,81 @@
+﻿using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
+using Qazbot.AnimationSystem;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Qazbot.VoteSystem
+{
+    class VoteCommand
+    {
+
+        
+        VoteHandler voter = new VoteHandler();
+        DiscordMessage pollMessage;
+        List<DiscordEmoji> optionEmojis;
+
+        [Command("startvote")]
+        [Description("Starts the vote")]
+        public async Task StartVoteCommand(CommandContext command) {
+            List<DiscordEmoji> emojisList = command.Guild.Emojis.ToList<DiscordEmoji>();
+
+            if (voter.OpenVotes()) {
+                string message = "Voting has started!\n";
+
+                foreach (string option in voter.options) {
+                    int rand = Qazbot.ModuleHandler.rand.Next() % emojisList.Count;
+                    DiscordEmoji newEmoji = emojisList[rand];
+                    message += $"\n{new Emote(newEmoji.Name).Text}: {option}";
+                    optionEmojis.Add(newEmoji);
+                    emojisList.RemoveAt(rand);
+                }
+
+                pollMessage = await command.RespondAsync(message);
+            }
+        }
+
+        
+        private Task TallyVotes(){
+            foreach (DiscordReaction emoji in pollMessage.Reactions) {
+                IReadOnlyList<DiscordUser> users = await pollMessage.GetReactionsAsync(emoji.Emoji);
+                int emojiIndex = -1;
+
+                for (int i = 0; i < optionEmojis.Count; i++) {
+                    if (emoji.Emoji == optionEmojis[i]) {
+                        emojiIndex = i;
+                        break;
+                    }
+                }
+
+                if (emojiIndex == -1) {
+                    continue;
+                }
+
+                foreach (DiscordUser user in users) {
+                    voter.Vote(user.Id.ToString(), emojiIndex);
+                }
+            }
+        }
+
+        [Command("addoption")]
+        [Description("Adds and option to the vote")]
+        public async Task AddOptionCommand(CommandContext command) {
+            string option = command.Message.Content;
+            option = option.Substring(option.IndexOf(' ') + 1);
+            voter.AddOption(option);
+        }
+
+        [Command("endvote")]
+        public async Task EndVoteCommand(CommandContext command) {
+            
+            voter.StopVote();
+            string result = voter.AnnounceWinner();
+
+            await command.RespondAsync(result);
+        }
+    }
+}
