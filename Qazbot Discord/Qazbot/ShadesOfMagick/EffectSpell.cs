@@ -16,5 +16,12 @@ namespace Qazbot.ShadesOfMagick
             this.baseAccuracy = baseAccuracy;
             this.effect = effect;
         }
+
+        public override string Execute()
+        {
+            string result = "";
+
+            return result;
+        }
     }
 }

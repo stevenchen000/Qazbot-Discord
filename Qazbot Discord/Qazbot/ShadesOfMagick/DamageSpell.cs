@@ -16,17 +16,12 @@ namespace Qazbot.ShadesOfMagick
             this.spellpower = spellpower;
             this.element = element;
         }
-    }
 
-    public enum FF12Element {
-        Fire,
-        Lightning,
-        Ice,
-        Water,
-        Earth,
-        Wind,
-        Holy,
-        Dark,
-        None
+        public override string Execute()
+        {
+            string result = "";
+
+            return result;
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace Qazbot.FF9Nobles
 
                 currentUser = context.Member.Username;
                 DiscordMember member = context.Member;
+                
                 string username = member.Nickname == null ? currentUser : member.Nickname;
 
                 await context.RespondAsync($"{username} has started performing I Want To Be Your Canary in front of 100 nobles! How many nobles can they impress?");

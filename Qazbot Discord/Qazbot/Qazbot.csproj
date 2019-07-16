@@ -94,19 +94,24 @@
     <Compile Include="FFXChallenge\Challenge2.cs" />
     <Compile Include="FFXChallenge\ChallengeManager2.cs" />
     <Compile Include="FileHandler.cs" />
+    <Compile Include="LevelSystem\Stats.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="MyCommands.cs" />
     <Compile Include="AnimationSystem\Emote.cs" />
+    <Compile Include="PointSystem\PointManager.cs" />
     <Compile Include="QazbotMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModuleHandler.cs" />
     <Compile Include="ShadesOfMagick\EffectSpell.cs" />
     <Compile Include="ShadesOfMagick\DamageSpell.cs" />
+    <Compile Include="ShadesOfMagick\FF12Element.cs" />
     <Compile Include="ShadesOfMagick\HealingSpell.cs" />
     <Compile Include="ShadesOfMagick\SpellHandler.cs" />
     <Compile Include="ShadesOfMagick\Spell.cs" />
     <Compile Include="TempAddModules.cs" />
     <Compile Include="TenYears\TenYears.cs" />
+    <Compile Include="UserSystem\User.cs" />
+    <Compile Include="UserSystem\UserManager.cs" />
     <Compile Include="VoteSystem\VoteHandler.cs" />
     <Compile Include="VoteSystem\VoteCommand.cs" />
   </ItemGroup>

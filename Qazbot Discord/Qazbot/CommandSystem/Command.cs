@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DSharpPlus.EventArgs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,16 @@ namespace Qazbot.CommandSystem
         public List<string> aliases { get; set; }
         public CommandBehaviour behaviour { get; set; }
 
-        public void Call() {
-            behaviour.Execute();
+        /*
+         Should take in:
+            user
+            channel
+            list of args
+             */
+
+
+        public async Task Execute(string message, MessageCreateEventArgs args) {
+            await behaviour.Execute(message, args);
         }
 
 

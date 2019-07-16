@@ -14,5 +14,12 @@ namespace Qazbot.ShadesOfMagick
             this.spellName = spellName;
             this.spellpower = spellpower;
         }
+
+        public override string Execute()
+        {
+            string result = "";
+
+            return result;
+        }
     }
 }

@@ -12,7 +12,6 @@ namespace Qazbot
     public class BotManager
     {
         public DiscordClient client { get; set; }
-        public CommandsNextModule commandsNext { get; set; }
         public CommandManager commands { get; set; }
         
 

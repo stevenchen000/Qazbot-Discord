@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Qazbot.ShadesOfMagick
 {
-    abstract class Spell
+    public abstract class Spell
     {
         public string spellName { get; set; }
+        public bool canBeReflected { get; set; }
+        public bool canBeReversed { get; set; }
+        public FF12Element spellElement { get; set; }
+
+        public abstract string Execute();
     }
 }

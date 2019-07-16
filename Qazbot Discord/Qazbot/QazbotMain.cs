@@ -12,6 +12,7 @@ using Qazbot.AnimationSystem;
 using Qazbot.FF9Nobles;
 using Qazbot.VoteSystem;
 using System.Runtime.Serialization.Formatters.Binary;
+using Qazbot.CommandSystem;
 
 namespace Qazbot
 {
@@ -55,7 +56,7 @@ namespace Qazbot
             commandsNext.RegisterCommands<NoblesCommand>();
             commandsNext.RegisterCommands<VoteCommand>();
 
-            
+
             /*
             discord.MessageCreated += async e =>
             {
@@ -63,10 +64,10 @@ namespace Qazbot
                     await e.Message.RespondAsync("pong!");
             };*/
 
-
+            CommandManager commands = new CommandManager();
             //makes discord usable on Windows 7
             discord.SetWebSocketClient<WebSocketSharpClient>();
-
+            discord.MessageCreated += commands.CheckCommand;
             await discord.ConnectAsync();
             await Task.Delay(-1);
             
