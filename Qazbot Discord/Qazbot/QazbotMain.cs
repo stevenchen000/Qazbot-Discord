@@ -46,7 +46,7 @@ namespace Qazbot
 
 
             //create command module
-            commandsNext = discord.UseCommandsNext(new CommandsNextConfiguration
+            /*commandsNext = discord.UseCommandsNext(new CommandsNextConfiguration
             {
                 StringPrefix = "!"
             });
@@ -54,7 +54,7 @@ namespace Qazbot
             commandsNext.RegisterCommands<MyCommands>();
             commandsNext.RegisterCommands<AnimationCommands>();
             commandsNext.RegisterCommands<NoblesCommand>();
-            commandsNext.RegisterCommands<VoteCommand>();
+            commandsNext.RegisterCommands<VoteCommand>();*/
 
 
             /*
@@ -66,7 +66,7 @@ namespace Qazbot
 
             CommandManager commands = new CommandManager();
             //makes discord usable on Windows 7
-            discord.SetWebSocketClient<WebSocketSharpClient>();
+            //discord.SetWebSocketClient<WebSocketSharpClient>();
             discord.MessageCreated += commands.CheckCommand;
             await discord.ConnectAsync();
             await Task.Delay(-1);

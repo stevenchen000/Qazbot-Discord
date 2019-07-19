@@ -11,6 +11,15 @@ namespace Qazbot
     {
         protected string filename { get; set; }
 
+        
+        public virtual void OnReceiveMessage() { }
+        public virtual void OnMessageEdited() { }
+        public virtual void OnChannelCreated() { }
+        public virtual void OnChannelDeleted() { }
+        public virtual void OnChannelPinsUpdated() { }
+        public virtual void OnChannelUpdated() { }
+
+
         public abstract void SaveData();
         public abstract void LoadData();
     }
